@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Reservation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <h2>🚆 RailBook</h2>
+        <nav>
+            <a href="#search">Search Trains</a>
+            <a href="#history">My Bookings</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
+            <h1>Find your next train.</h1>
+            <p>Search routes, check available seats, and book your journey.</p>
+        </section>
+
+        <section class="panel" id="search">
+            <h2>Search Trains</h2>
+            <form id="searchForm" class="search-form">
+                <div>
+                    <label for="source">From</label>
+                    <input id="source" placeholder="e.g. Ahmedabad" required>
+                </div>
+                <div>
+                    <label for="destination">To</label>
+                    <input id="destination" placeholder="e.g. Mumbai" required>
+                </div>
+                <button type="submit">Search Trains</button>
+            </form>
+            <p id="searchMessage" class="message" role="status"></p>
+            <div id="trainResults" class="train-grid"></div>
+        </section>
+
+        <section class="panel" id="history">
+            <h2>Booking History</h2>
+            <form id="historyForm" class="history-form">
+                <input id="passengerSearch" placeholder="Enter passenger name (optional)">
+                <button type="submit">View Bookings</button>
+            </form>
+            <p id="historyMessage" class="message" role="status"></p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Passenger</th>
+                            <th>Train</th>
+                            <th>Route</th>
+                            <th>Seats</th>
+                            <th>Total Fare</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingResults">
+                        <tr><td colspan="6">Search to view bookings.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <dialog id="bookingDialog">
+        <form id="bookingForm">
+            <h2>Book Your Ticket</h2>
+            <p id="selectedTrain"></p>
+            <input type="hidden" id="trainId">
+
+            <label for="passengerName">Passenger Name</label>
+            <input id="passengerName" maxlength="100" required>
+
+            <label for="seats">Number of Seats</label>
+            <input id="seats" type="number" min="1" max="10" value="1" required>
+
+            <p id="farePreview" class="fare-preview"></p>
+            <p id="bookingMessage" class="message" role="status"></p>
+
+            <div class="dialog-actions">
+                <button type="button" id="cancelBooking" class="secondary">Cancel</button>
+                <button type="submit">Confirm Booking</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+</body>
+</html>
